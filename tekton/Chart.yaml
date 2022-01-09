@@ -1,0 +1,14 @@
+apiVersion: v2
+name: tekton 
+version: 1.0.0
+description: helheim tekton
+type: application
+keywords:
+  - ci
+  - cd
+  - tekton
+home: https://github.com/helheim-project
+sources:
+  - https://github.com/helheim-project/cicd.git
+appVersion: 1.0.0
+deprecated: false

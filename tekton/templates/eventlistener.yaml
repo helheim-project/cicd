@@ -1,0 +1,12 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: helheim-webhook
+spec:
+  serviceAccountName: pipeline
+  triggers:
+    - name: tekton-helheim-webhook
+      bindings:
+        - ref: helheim-triggerbinding
+      template:
+        name: tekton-helheim-trigger-template

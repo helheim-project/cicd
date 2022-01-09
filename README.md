@@ -1,2 +1,2 @@
 # cicd
-separates CI/CD 
+separates CI/CD - mit Absicht werden nicht GH Actions genutzt.
