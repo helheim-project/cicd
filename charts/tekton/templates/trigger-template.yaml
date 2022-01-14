@@ -2,6 +2,7 @@ apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
   name: tekton-helheim-trigger-template
+  namespace: {{ .Values.global.namespace }}
 spec:
   params:
     - name: gitrevision
@@ -14,6 +15,7 @@ spec:
       kind: PipelineRun
       metadata:
         generateName: helheim-app-
+        namespace: {{ .Values.global.namespace }}
         labels:
           tekton.dev/pipeline: helheim-cicd
       spec:

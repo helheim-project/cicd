@@ -2,6 +2,7 @@ apiVersion: triggers.tekton.dev/v1alpha1
 kind: EventListener
 metadata:
   name: helheim-webhook
+  namespace: {{ .Values.global.namespace }}
 spec:
   serviceAccountName: pipeline
   triggers:

@@ -1,5 +1,5 @@
 apiVersion: v2
-name: CI/CD for helheim 
+name: cicd-helheim 
 version: 1.0.0
 description: CI/CD for helheim
 type: application
@@ -12,6 +12,6 @@ sources:
   - https://github.com/helheim-project/cicd.git
 dependencies: 
   - name: tekton
-    version: The version of the chart ("1.2.3")
+    version: 1.0.0
 appVersion: 1.0.0
 deprecated: false
