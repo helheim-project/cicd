@@ -1,5 +1,5 @@
 apiVersion: v2
-name: tekton 
+name: tekton-catalog-installer 
 version: 1.0.0
 description: helheim tekton
 type: application
@@ -7,6 +7,8 @@ keywords:
   - ci
   - cd
   - tekton
+  - catalog
+  - installer
 home: https://github.com/helheim-project
 sources:
   - https://github.com/helheim-project/cicd.git

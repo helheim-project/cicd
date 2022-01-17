@@ -11,7 +11,7 @@ home: https://github.com/helheim-project
 sources:
   - https://github.com/helheim-project/cicd.git
 dependencies: 
-  - name: tekton
+  - name: tekton-catalog-installer
     version: 1.0.0
 appVersion: 1.0.0
 deprecated: false

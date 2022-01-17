@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Chart.Name }}
+  namespace: {{ .Values.global.namespace }}
+spec:
+  schedule: "10 6,18 * * *"
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: install-tekton-catalog
+            image: registry.access.redhat.com/ubi8/toolbox
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - /usr/local/bin/{{ .Chart.Name }}.sh
+            volumeMounts:
+            - name: script
+              mountPath: "/usr/local/bin/"
+          volumes:
+          - name: script
+            configMap:
+              name: {{ .Chart.Name }}-script
+              defaultMode: 0777
+          restartPolicy: OnFailure
