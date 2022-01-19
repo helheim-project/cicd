@@ -4,13 +4,15 @@ metadata:
   name: {{ .Chart.Name }}
   namespace: {{ .Values.global.namespace }}
 spec:
-  schedule: "10 6,18 * * *"
+  schedule: "10,51 6,17,18 * * *"
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
   jobTemplate:
     spec:
+      completions: 1
       template:
         spec:
+          serviceAccountName: pipeline
           containers:
           - name: install-tekton-catalog
             image: registry.access.redhat.com/ubi8/toolbox
@@ -25,6 +27,6 @@ spec:
           volumes:
           - name: script
             configMap:
-              name: {{ .Chart.Name }}-script
+              name: "{{ .Chart.Name }}-{{ .Chart.Version }}-script"
               defaultMode: 0777
           restartPolicy: OnFailure

@@ -1,15 +1,17 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: {{ .Chart.Name }}-script
+  name: "{{ .Chart.Name }}-{{ .Chart.Version }}-script"
   namespace: {{ .Values.global.namespace }}
   labels:
-      app: {{ .Chart.Name }}
+    app: {{ .Chart.Name }}
 data:
   {{ .Chart.Name }}.sh: |
     #!/bin/sh
 
     date 
+
+    id 
 
     VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
     curl -L https://storage.googleapis.com/kubernetes-release/release/${VERSION}/bin/linux/amd64/kubectl -o /usr/bin/kubectl 
@@ -19,3 +21,17 @@ data:
     kubectl version
     git version
 
+    pwd
+    ls -latr
+    git clone https://github.com/Continuous-X/cx-tekton-catalog.git
+    cd cx-tekton-catalog
+
+    chmod u+x scripts/*.sh
+
+    pwd
+    ls -latr
+    ls -latr scripts
+
+
+    NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
+    ./scripts/catalog-install.sh "${NAMESPACE}"
