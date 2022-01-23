@@ -20,13 +20,13 @@ spec:
             command:
             - /bin/sh
             - -c
-            - /usr/local/bin/{{ .Chart.Name }}.sh
+            - /importer/{{ .Chart.Name }}.sh
             volumeMounts:
             - name: script
-              mountPath: "/usr/local/bin/"
+              mountPath: "/importer/"
           volumes:
           - name: script
             configMap:
-              name: "{{ .Chart.Name }}-{{ .Chart.Version }}-script"
+              name: "{{ .Chart.Name }}-script-{{ .Chart.Version }}"
               defaultMode: 0777
           restartPolicy: OnFailure

@@ -1,5 +1,5 @@
 apiVersion: v2
-name: tekton-catalog-installer 
+name: tekton-catalog-import 
 version: 1.0.1
 description: helheim tekton
 type: application
