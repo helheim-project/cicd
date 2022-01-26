@@ -1,19 +1,16 @@
 apiVersion: v2
-name: cicd-helheim 
-version: 1.0.0
-description: CI/CD for helheim
+name: tekton-catalog-config 
+version: 1.0.1
+description: helheim tekton catalog configuration
 type: application
 keywords:
   - ci
   - cd
   - tekton
+  - catalog
+  - config
 home: https://github.com/helheim-project
 sources:
   - https://github.com/helheim-project/cicd.git
-dependencies: 
-  - name: tekton-catalog-import
-    version: 1.0.1
-  - name: tekton-catalog-config
-    version: 1.0.1
 appVersion: 1.0.0
 deprecated: false

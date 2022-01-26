@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: "{{ .Values.global.serviceAccountNames.importer}}"
+  namespace: "{{ .Values.global.namespace }}"
+  labels:
+    app: "{{ .Chart.Name }}"
+    version: "{{ .Chart.Version }}"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: "{{ .Values.global.serviceAccountNames.pipeline}}"
+  namespace: "{{ .Values.global.namespace }}"
+  labels:
+    app: "{{ .Chart.Name }}"
+    version: "{{ .Chart.Version }}"

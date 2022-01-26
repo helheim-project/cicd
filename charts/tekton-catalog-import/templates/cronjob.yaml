@@ -1,10 +1,13 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ .Chart.Name }}
-  namespace: {{ .Values.global.namespace }}
+  name: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+  namespace: "{{ .Values.global.namespace }}"
+  labels:
+    app: "{{ .Chart.Name }}"
+    version: "{{ .Chart.Version }}"
 spec:
-  schedule: "10,51 6,17,18 * * *"
+  schedule: "10,51 6,11,12,13,17,18 * * *"
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
   jobTemplate:
@@ -12,7 +15,7 @@ spec:
       completions: 1
       template:
         spec:
-          serviceAccountName: pipeline
+          serviceAccountName: "{{ .Values.global.serviceAccountNames.importer}}"
           containers:
           - name: install-tekton-catalog
             image: registry.access.redhat.com/ubi8/toolbox
@@ -20,13 +23,28 @@ spec:
             command:
             - /bin/sh
             - -c
-            - /importer/{{ .Chart.Name }}.sh
+            - |-
+              /catalog/importer/{{ .Chart.Name }}.sh;
+              cat /catalog/config-default/values.yaml; 
+              cat /catalog/config-pipeline/values.yaml;
             volumeMounts:
             - name: script
-              mountPath: "/importer/"
+              mountPath: "/catalog/importer/"
+            - name: values-custom-default
+              mountPath: "/catalog/config-default/"
+            - name: values-custom-pipeline
+              mountPath: "/catalog/config-pipeline/"
           volumes:
           - name: script
             configMap:
               name: "{{ .Chart.Name }}-script-{{ .Chart.Version }}"
+              defaultMode: 0777
+          - name: values-custom-default
+            configMap:
+              name: "tekton-catalog-config-custom-default-{{ .Chart.Version }}"
+              defaultMode: 0777
+          - name: values-custom-pipeline
+            configMap:
+              name: "tekton-catalog-config-custom-pipeline-{{ .Chart.Version }}"
               defaultMode: 0777
           restartPolicy: OnFailure

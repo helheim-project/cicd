@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    app: {{ .Chart.Name }}
+    version: {{ .Chart.Version }}
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: 10Gi
+    limits.cpu: "2"
+    limits.memory: 20Gi

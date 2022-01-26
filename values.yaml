@@ -1,2 +1,5 @@
 global:
   namespace: cicd-helheim
+  serviceAccountNames:
+    pipeline: pipeline
+    importer: catalog-importer
