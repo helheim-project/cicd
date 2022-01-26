@@ -25,15 +25,15 @@ spec:
             - -c
             - |-
               /catalog/importer/{{ .Chart.Name }}.sh;
-              cat /catalog/config-default/values.yaml; 
-              cat /catalog/config-pipeline/values.yaml;
+              cat /catalog/customer/config-default/values.yaml; 
+              cat /catalog/customer/config-pipeline/values.yaml;
             volumeMounts:
             - name: script
               mountPath: "/catalog/importer/"
             - name: values-custom-default
-              mountPath: "/catalog/config-default/"
+              mountPath: "/catalog/customer/config-default/"
             - name: values-custom-pipeline
-              mountPath: "/catalog/config-pipeline/"
+              mountPath: "/catalog/customer/config-pipeline/"
           volumes:
           - name: script
             configMap:
