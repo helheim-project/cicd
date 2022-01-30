@@ -40,15 +40,14 @@ Layout der Dateien in diesem Repository:
 cicd
 |
 ├── charts                                      - Einstieg zu den Helm Charts
-│   └── tekton-catalog-config                   - beinhaltet alle Ressourcen für die Tekton Katalog Konfiguration, die vom Nutzer angepasst werden wollen/sollen
 |   │
-│   │   ├── static                              - values.yaml Dateien, die jeweils kategorisierte Konfigurationen enthalten
-│   │   │   ├── values-custom-default.yaml      - Benutzer Default Konfiguration zum Tekton Katalog
-│   │   │   └── values-custom-pipeline.yaml     - Benutzer Konfigurationen zu Pipelines, Tasks des Tekton Kataloges
-│   │   └── templates                           - ConfigMaps, die die values.yaml Dateien im Importer bereitstellen
-│   └── tekton-catalog-import                   - beinhaltet alle Ressourcen für den Tekton Katalog Importer
+│   └── tekton-catalog-import               - beinhaltet alle Ressourcen für den Tekton Katalog Importer inkl. der Benutzer Konfigurationen zum Tekton Katalog
+│       ├── static                          - Dateien, die in ConfigMaps geladen werden
+│       │   ├── catalog-apply.sh            - Script zum Aufruf des Installer Scriptes aus dem Tekton Katalog
+│       │   └── values-custom-config.yaml   - Benutzer Konfigurationen zu Pipelines, Tasks des Tekton Kataloges
+│       └── templates                       - ConfigMaps, ServiceAccounts (inkl. notwendiger Berechtigungen) zur Bereitstellung und Nutzung des Tekton Kataloges
 |
-└── scripts                                     - Hier liegen alle Scripts, die für die Installation und Deinstallation der Charts benötigt werden
+└── scripts                                     - Hier liegen alle Scripts, die für die Installation und Deinstallation der Charts in diesem Repository benötigt werden
     └── namespace                               - zusätzliches Helm Chart für die Bereitstellung des Namspaces
 
 ```
