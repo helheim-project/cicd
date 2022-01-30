@@ -1,0 +1,6 @@
+global:
+  namespace: local-cicd-helheim
+catalog:
+  pipeline:
+    config:
+      writemetricsactive: "customer"

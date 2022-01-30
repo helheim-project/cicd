@@ -15,12 +15,13 @@ rules:
 - apiGroups: ['tekton.dev']
   resources: ['pipelineruns', 'pipelineresources', 'taskruns', 'tasks', 'pipelines', 'conditions']
   verbs: ['get', 'list', 'watch', 'create', 'patch', 'update']
-#- apiGroups: ['']
-#  # secrets are only needed for GitHub/GitLab interceptors
-#  # configmaps is needed for updating logging config
-#  resources: ['configmaps', 'secrets']
-#  verbs: ['get', 'list', 'watch']
-#  # Permissions to create resources in associated TriggerTemplates
+- apiGroups: ['']
+  # secrets are only needed for GitHub/GitLab interceptors
+  # configmaps is needed for updating logging config
+  #resources: ['configmaps', 'secrets']
+  resources: ['configmaps']
+  verbs: ['get', 'list', 'watch', 'create']
+  # Permissions to create resources in associated TriggerTemplates
 #- apiGroups: ['']
 #  resources: ['serviceaccounts']
 #  verbs: ['impersonate']

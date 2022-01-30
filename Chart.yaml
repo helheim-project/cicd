@@ -13,7 +13,5 @@ sources:
 dependencies: 
   - name: tekton-catalog-import
     version: 1.0.1
-  - name: tekton-catalog-config
-    version: 1.0.1
 appVersion: 1.0.0
 deprecated: false

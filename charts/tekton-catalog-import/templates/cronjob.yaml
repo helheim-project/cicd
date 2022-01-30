@@ -24,27 +24,21 @@ spec:
             - /bin/sh
             - -c
             - |-
-              /catalog/importer/{{ .Chart.Name }}.sh;
-              cat /catalog/customer/config-default/values.yaml; 
-              cat /catalog/customer/config-pipeline/values.yaml;
+              ls -la /catalog
+              cat /catalog/config/values.yaml; 
+              /catalog/importer/{{ .Chart.Name }}.sh /catalog/config/values.yaml;
             volumeMounts:
             - name: script
               mountPath: "/catalog/importer/"
-            - name: values-custom-default
-              mountPath: "/catalog/customer/config-default/"
-            - name: values-custom-pipeline
-              mountPath: "/catalog/customer/config-pipeline/"
+            - name: values-catalog-config
+              mountPath: "/catalog/config/"
           volumes:
           - name: script
             configMap:
               name: "{{ .Chart.Name }}-script-{{ .Chart.Version }}"
               defaultMode: 0777
-          - name: values-custom-default
+          - name: values-catalog-config
             configMap:
-              name: "tekton-catalog-config-custom-default-{{ .Chart.Version }}"
-              defaultMode: 0777
-          - name: values-custom-pipeline
-            configMap:
-              name: "tekton-catalog-config-custom-pipeline-{{ .Chart.Version }}"
+              name: "{{ .Chart.Name }}-customer-config-{{ .Chart.Version }}"
               defaultMode: 0777
           restartPolicy: OnFailure
