@@ -1,5 +1,3 @@
-global:
-  namespace: local-cicd-helheim
 catalog:
   pipeline:
     config:
